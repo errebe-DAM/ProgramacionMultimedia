@@ -1,5 +1,7 @@
 package com.example.practica_t1
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.practica_t1.ui.theme.PracticaT1Theme
@@ -28,6 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val context = LocalContext.current
             PracticaT1Theme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
@@ -41,7 +45,9 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Text("Bienvenido a la APP")
-                        Button(onClick = {}) {
+                        Button(onClick = {
+                            goToForm(context)
+                        }) {
                             Text("Ir al formulario")
                         }
                     }
@@ -49,4 +55,9 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+fun goToForm(context: Context) {
+    val intent = Intent(context, FormularioActivity::class.java)
+    context.startActivity(intent)
 }

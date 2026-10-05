@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity2"
+            android:name=".FormularioActivity"
             android:exported="false"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.PracticaT1"
