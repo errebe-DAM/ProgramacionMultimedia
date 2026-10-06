@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Practica-T1</string>
     <string name="title_activity_main2">FormularioActivity</string>
+    <string name="title_activity_perfil">PerfilActivity</string>
 </resources>
