@@ -42,6 +42,8 @@ import java.time.ZoneId
 
 class FormularioActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
+    val datosLauncher = registerForActivityResult()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -70,17 +72,17 @@ fun Form() {
     var tlf by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var fNacimiento by remember { mutableStateOf(LocalDate.now()) }
+    var fNacimiento: LocalDate? by remember { mutableStateOf(null) }
+    var direccion by remember { mutableStateOf("") }
     var showDatePicker by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
 
+
+
     if (showDatePicker) {
         val datePickerState = rememberDatePickerState(
-            initialSelectedDateMillis = fNacimiento
-                .atStartOfDay(ZoneId.systemDefault())
-                .toInstant()
-                .toEpochMilli()
+            initialSelectedDateMillis = null
         )
 
         DatePickerDialog(
@@ -141,6 +143,12 @@ fun Form() {
             )
         )
         OutlinedTextField(
+            value = direccion,
+            onValueChange = { direccion = it },
+            label = { Text("Direccion") },
+            singleLine = true,
+        )
+        OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
@@ -167,6 +175,7 @@ fun Form() {
             singleLine = true,
             visualTransformation = PasswordVisualTransformation()
         )
+
         Button({
             Bundle()
             val intent = Intent(context, PerfilActivity::class.java).apply {
@@ -175,6 +184,7 @@ fun Form() {
                     primerApellido,
                     segundoApellido,
                     tlf,
+                    direccion,
                     email,
                     fNacimiento.toString(),
                     password
@@ -193,7 +203,8 @@ data class FormData(
     val primerApellido: String,
     val segundoApellido: String,
     val tlf: String,
+    val direccion: String,
     val email: String,
-    val fNacimiento: String,
+    val fNacimiento: String?,
     val password: String
 ) : java.io.Serializable
