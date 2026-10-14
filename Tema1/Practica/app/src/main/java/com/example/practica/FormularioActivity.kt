@@ -1,4 +1,4 @@
-package com.example.practica_t1
+package com.example.practica
 
 import android.content.Intent
 import android.os.Build
@@ -36,9 +36,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.IntentCompat
-import com.example.practica_t1.ui.theme.PracticaT1Theme
+import com.example.practica.ui.theme.PracticaT1Theme
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId

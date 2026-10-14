@@ -1,4 +1,4 @@
-package com.example.practica_t1
+package com.example.practica
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.example.practica_t1.ui.theme.PracticaT1Theme
+import com.example.practica.ui.theme.PracticaT1Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
