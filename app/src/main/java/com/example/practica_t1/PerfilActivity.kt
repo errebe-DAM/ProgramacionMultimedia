@@ -43,7 +43,6 @@ class PerfilActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val data = IntentCompat.getSerializableExtra(intent, "data", FormData::class.java)
-            val context = LocalContext.current
             PracticaT1Theme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -70,7 +69,7 @@ class PerfilActivity : ComponentActivity() {
                                         .setData("geo:0,0?q=${data?.direccion}".toUri())
                                 )
                             }
-                            FormField("F. Nacimiento", data?.fNacimiento)
+                            FormField("F. Nacimiento", data?.fNacimiento?.toString() ?: "")
                             FormField("Email", data?.email, !data?.email.isNullOrEmpty()) {
                                 startActivity(
                                     Intent(Intent.ACTION_SENDTO)
@@ -82,8 +81,11 @@ class PerfilActivity : ComponentActivity() {
 
                                 Button(
                                     onClick = {
-                                        val intent = Intent(context, FormularioActivity::class.java)
-                                        context.startActivity(intent)
+                                        val intent = Intent().apply {
+                                            putExtra("data", data)
+                                        }
+                                        setResult(RESULT_OK, intent)
+                                        finish()
                                     },
                                 ) {
                                     Text("Volver")
