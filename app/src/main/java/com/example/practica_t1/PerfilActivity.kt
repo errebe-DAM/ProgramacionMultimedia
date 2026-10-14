@@ -11,6 +11,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.autofill.createFromAutofillValue
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -53,7 +55,7 @@ class PerfilActivity : ComponentActivity() {
                             .padding(innerPadding),
                         contentAlignment = Alignment.Center
                     ) {
-                        Column {
+                        Column(Modifier.width(IntrinsicSize.Max)) {
                             FormField("Nombre", data?.nombre)
                             FormField("Primer apellido", data?.primerApellido)
                             FormField("Segundo apellido", data?.segundoApellido)
@@ -77,8 +79,7 @@ class PerfilActivity : ComponentActivity() {
                                 )
                             }
                             FormField("Password", data?.password)
-                            Row(horizontalArrangement = Arrangement.End) {
-
+                            Row(Modifier.fillMaxWidth().padding(vertical = 4.dp), horizontalArrangement = Arrangement.SpaceAround) {
                                 Button(
                                     onClick = {
                                         val intent = Intent().apply {
@@ -89,6 +90,16 @@ class PerfilActivity : ComponentActivity() {
                                     },
                                 ) {
                                     Text("Volver")
+                                }
+                                Button(
+                                    onClick = {
+                                        val intent = Intent(this@PerfilActivity, MainActivity::class.java).apply {
+                                            setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        }
+                                        startActivity(intent)
+                                    },
+                                ) {
+                                    Text("Cerrar sesion")
                                 }
                             }
                         }
