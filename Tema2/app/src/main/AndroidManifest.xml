@@ -23,6 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NuevaTareaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_nueva_tarea"
+            android:theme="@style/Theme.Practica"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".TareaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tarea"
+            android:theme="@style/Theme.Practica"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
