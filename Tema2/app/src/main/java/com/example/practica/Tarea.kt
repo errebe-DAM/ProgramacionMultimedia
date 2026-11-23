@@ -1,8 +1,10 @@
 package com.example.practica
 
-import java.time.LocalDate
+import java.io.Serializable
 
 data class Tarea(
     val nombre: String,
-    val fecha: LocalDate
-)
+    val descripcion: String,
+    val fecha: Long?,
+    val prioridad: Int?
+): Serializable

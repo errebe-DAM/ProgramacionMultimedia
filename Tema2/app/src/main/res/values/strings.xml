@@ -2,4 +2,6 @@
     <string name="app_name">Practica</string>
     <string name="title_activity_nueva_tarea">NuevaTareaActivity</string>
     <string name="title_activity_tarea">TareaActivity</string>
+    <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="title_activity_titulos">TitulosActivity</string>
 </resources>

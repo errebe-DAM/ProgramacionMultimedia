@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica">
         <activity
-            android:name=".MainActivity"
+            android:name=".LlegadaActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Practica"
@@ -33,6 +33,18 @@
             android:name=".TareaActivity"
             android:exported="false"
             android:label="@string/title_activity_tarea"
+            android:theme="@style/Theme.Practica"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false"
+            android:label="@string/title_activity_perfil"
+            android:theme="@style/Theme.Practica"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".TitulosActivity"
+            android:exported="false"
+            android:label="@string/title_activity_titulos"
             android:theme="@style/Theme.Practica"
             android:windowSoftInputMode="adjustResize" />
     </application>
