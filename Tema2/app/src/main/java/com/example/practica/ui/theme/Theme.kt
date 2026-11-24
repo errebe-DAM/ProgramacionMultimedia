@@ -3,13 +3,24 @@ package com.example.practica.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import com.example.practica.AppState
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -35,7 +46,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun PracticaTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = AppState.isDarkMode,
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
@@ -53,6 +64,22 @@ fun PracticaTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
-    )
+    ) {
+        Box(
+            Modifier.fillMaxSize()
+        ) {
+            content()
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 64.dp, horizontal = 8.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Switch(
+                    checked = darkTheme,
+                    onCheckedChange = { AppState.isDarkMode = it},
+                )
+            }
+        }
+    }
 }

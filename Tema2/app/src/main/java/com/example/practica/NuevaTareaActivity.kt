@@ -199,8 +199,7 @@ class NuevaTareaActivity : ComponentActivity() {
                                     )
                                 }
                             },
-                            enabled = title.isNotBlank() && description.isNotBlank()
-                            ,
+                            enabled = title.isNotBlank() && description.isNotBlank(),
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text("Guardar tarea")

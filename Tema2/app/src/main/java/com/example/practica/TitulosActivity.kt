@@ -1,5 +1,6 @@
 package com.example.practica
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -62,44 +64,60 @@ class TitulosActivity : ComponentActivity() {
         setContent {
             PracticaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LazyColumn(
-                        Modifier
-                            .padding(innerPadding)
-                            .fillMaxSize()
-                            .padding(8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+
+                    Column(
+                        Modifier.padding(innerPadding)
                     ) {
-                        items(data.size) { i ->
-                            Column(
-                                Modifier
-                                    .background(
-                                        Color(0, 0, 255, 50),
-                                        RoundedCornerShape(8.dp)
-                                    )
-                                    .padding(8.dp)
-                            ) {
-                                Row(
-                                    Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween
+                        LazyColumn(
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            items(data.size) { i ->
+                                Column(
+                                    Modifier
+                                        .background(
+                                            Color(0, 0, 255, 50),
+                                            RoundedCornerShape(8.dp)
+                                        )
+                                        .padding(8.dp)
                                 ) {
-                                    Text(data[i].titulo,
-                                        Modifier
-                                            .weight(1f)
-                                    )
-                                    Spacer(Modifier.weight(0.3f))
-                                    Text(data[i].fecha_lanzamiento,
-                                        Modifier
-                                            .padding(8.dp)
-                                    )
-                                }
-                                Text(data[i].descripcion, Modifier.fillMaxWidth())
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                                    Text(data[i].puntuacion.absoluteValue.toString())
-                                    Text(data[i].plataforma)
-                                    Text(data[i].n_jugadores.toString())
+                                    Row(
+                                        Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Text(data[i].titulo,
+                                            Modifier
+                                                .weight(1f)
+                                        )
+                                        Spacer(Modifier.weight(0.3f))
+                                        Text(data[i].fecha_lanzamiento,
+                                            Modifier
+                                                .padding(8.dp)
+                                        )
+                                    }
+                                    Text(data[i].descripcion, Modifier.fillMaxWidth())
+                                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                        Text(data[i].puntuacion.absoluteValue.toString())
+                                        Text(data[i].plataforma)
+                                        Text(data[i].n_jugadores.toString())
+                                    }
                                 }
                             }
-                            }
+                        }
+                        Spacer(Modifier.weight(1f))
+                        // Este boton no lo pides pero si no quiero softlockear al usuario.
+                        Button(
+                            onClick = {
+                                startActivity(
+                                    Intent(this@TitulosActivity, LlegadaActivity::class.java)
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+                        ) {
+                            Text("Volver al menú principal")
+                        }
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.practica
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -179,7 +180,11 @@ class PerfilActivity : ComponentActivity() {
                         Button(
                             modifier = Modifier
                                 .fillMaxWidth(),
-                            onClick = {}
+                            onClick = {
+                                startActivity(
+                                    Intent(this@PerfilActivity, LlegadaActivity::class.java)
+                                )
+                            }
                         ) {
                             Text("Volver al menu principal")
                         }

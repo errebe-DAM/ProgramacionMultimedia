@@ -42,10 +42,20 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.IntentCompat
 import com.example.practica.ui.theme.PracticaTheme
 import com.example.practica.utils.convertMillisToDate
+import java.time.Clock
+import java.time.LocalDate
 import java.util.Calendar
+import kotlin.time.Instant
 
 class LlegadaActivity : ComponentActivity() {
-    private var tareas by mutableStateOf(emptyList<Tarea>())
+    private var tareas by mutableStateOf(
+        listOf(
+            Tarea("Tarea 1", "Lorem ipsum", System.currentTimeMillis(), 2),
+            Tarea("Tarea 2", "Lorem ipsum", System.currentTimeMillis(), 9),
+            Tarea("Tarea 3", "Lorem ipsum", System.currentTimeMillis(), 5),
+            Tarea("Tarea 4", "Lorem ipsum", System.currentTimeMillis(), 1),
+        )
+    )
 
     private val launcher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -63,9 +73,6 @@ class LlegadaActivity : ComponentActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
-        val username = ""
-        val rol = ""
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -78,11 +85,9 @@ class LlegadaActivity : ComponentActivity() {
                         .padding(innerPadding)
                         .padding(16.dp)
                     ) {
-
                         // FECHA
                         Row(
-                            Modifier
-                                .fillMaxWidth(),
+                            Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center
                         ) {
                             val date = Calendar.getInstance()
@@ -166,7 +171,7 @@ class LlegadaActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxWidth(),
                             onClick = {
                                 val intent = Intent(context, NuevaTareaActivity::class.java)
-                                context.startActivity(intent)
+                                launcher.launch(intent)
                             }
                         ) {
                             Text("Añadir tareas")
@@ -183,7 +188,11 @@ class LlegadaActivity : ComponentActivity() {
                         Row( horizontalArrangement = Arrangement.SpaceBetween) {
                             Button(
                                 modifier = Modifier.weight(2f),
-                                onClick = {}
+                                onClick = {
+                                        startActivity(
+                                            Intent(this@LlegadaActivity, PerfilActivity::class.java)
+                                        )
+                                }
                             ) {
                                 Text("Perfil")
                             }
